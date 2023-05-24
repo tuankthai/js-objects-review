@@ -8,7 +8,7 @@ function mergeObjects(obj1, obj2) {
 function calculateAverageAge(persons) {
   // Write your code here
   let totalAge = 0;
-  persons.forEach(person => {
+  persons.forEach  (person => {
     totalAge += person.age
   });
   return totalAge / persons.length
@@ -17,22 +17,38 @@ function calculateAverageAge(persons) {
 // Challenge 3: Filter Students by Grade
 function filterStudentsByGrade(students, grade) {
   // Write your code here
-  const passArr = students.filter(student => student.grade === 'grade')
-  // console.log(passArr)
-  const nameArr = [];
-  passArr.forEach(pass => nameArr.push(pass.name))
-  // console.log(nameArr)
-  return nameArr
+  const passArr = [];
+
+  for (student in students) {
+    // console.log(students[student])
+    //student is a key. not an actual obj property name. have to use [] with key, not '.'
+    if (students[student].grade === grade) passArr.push(students[student].name)
+  }
+ 
+  return passArr
 }
+const students = {
+  student1: { name: 'Alice', grade: 'A' },
+  student2: { name: 'Bob', grade: 'B' },
+  student3: { name: 'Charlie', grade: 'A' },
+};
+filterStudentsByGrade(students, 'A')
 
 // Challenge 4: Remove Property
 function removeProperty(obj, propertyName) {
   // Write your code here
+  delete obj[propertyName]
+  return obj
 }
 
 // Challenge 5: Calculate Total Score
 function calculateTotalScore(students) {
   // Write your code here
+  let total = 0
+  for (student in students) {
+    total += students[student].score
+  }
+  return total
 }
 
 module.exports = {
